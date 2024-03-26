@@ -30,7 +30,7 @@ namespace SM.Application
             var productCategory = new ProductCategory(command.Name, command.Description, command.Picture,
                 command.PictureAlt, command.PictureTitle, command.Keywords, command.MetaDescription, slug);
             _productCategoryRepository.Create(productCategory);
-            _productCategoryRepository.Save();
+            _productCategoryRepository.SaveChanges();
             return operationResult.Succeeded();
         }
 
@@ -52,7 +52,7 @@ namespace SM.Application
 
             string slug = GenerateSlug.Slugify(command.Name);
             productCategory.Edit(command.Name, command.Description, command.Picture, command.PictureAlt, command.PictureTitle, command.Keywords, command.MetaDescription, slug);
-            _productCategoryRepository.Save();
+            _productCategoryRepository.SaveChanges();
             return operationResult.Succeeded();
         }
 

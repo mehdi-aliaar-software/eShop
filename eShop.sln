@@ -7,19 +7,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShopManagement", "ShopManag
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SM.Domain", "SM.Domain", "{E210CA73-D782-4ABC-9100-675A2CA48670}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SM.Domain", "SM.Domain\SM.Domain.csproj", "{81220791-BF38-4AD8-80A9-4B6152193FD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Domain", "SM.Domain\SM.Domain.csproj", "{81220791-BF38-4AD8-80A9-4B6152193FD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "0_Framework", "0_Framework\0_Framework.csproj", "{D2A4B2B4-2C57-402A-AFC7-3EF370051DB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "0_Framework", "0_Framework\0_Framework.csproj", "{D2A4B2B4-2C57-402A-AFC7-3EF370051DB9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SM.Application", "SM.Application", "{CC99290F-49B6-415E-87A6-7BC32993843F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SM.Application.Contracts", "SM.Application.Contracts\SM.Application.Contracts.csproj", "{C000815D-CAC6-4D7B-A40C-F7707E51635F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Application.Contracts", "SM.Application.Contracts\SM.Application.Contracts.csproj", "{C000815D-CAC6-4D7B-A40C-F7707E51635F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SM.Application", "SM.Application\SM.Application.csproj", "{6A9E51C6-9042-4AF1-8706-25D93096A1FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Application", "SM.Application\SM.Application.csproj", "{6A9E51C6-9042-4AF1-8706-25D93096A1FE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SM.Infrastructure", "SM.Infrastructure", "{364154EF-6639-4438-A970-914293015AFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SM.Infrastructure.EfCore", "SM.Infrastructure.EfCore\SM.Infrastructure.EfCore.csproj", "{392B6321-BEB7-4B3E-9AD2-E6441961AB0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Infrastructure.EfCore", "SM.Infrastructure.EfCore\SM.Infrastructure.EfCore.csproj", "{392B6321-BEB7-4B3E-9AD2-E6441961AB0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SM.Configuration", "SM.Configuration\SM.Configuration.csproj", "{68380002-1CDB-4055-9BC7-2C4069E50D0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceHost", "ServiceHost\ServiceHost.csproj", "{5D39375B-DBD2-4D6A-AC69-48BF27E76DB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,14 @@ Global
 		{392B6321-BEB7-4B3E-9AD2-E6441961AB0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{392B6321-BEB7-4B3E-9AD2-E6441961AB0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{392B6321-BEB7-4B3E-9AD2-E6441961AB0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68380002-1CDB-4055-9BC7-2C4069E50D0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68380002-1CDB-4055-9BC7-2C4069E50D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68380002-1CDB-4055-9BC7-2C4069E50D0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68380002-1CDB-4055-9BC7-2C4069E50D0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D39375B-DBD2-4D6A-AC69-48BF27E76DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D39375B-DBD2-4D6A-AC69-48BF27E76DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D39375B-DBD2-4D6A-AC69-48BF27E76DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D39375B-DBD2-4D6A-AC69-48BF27E76DB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +71,7 @@ Global
 		{6A9E51C6-9042-4AF1-8706-25D93096A1FE} = {CC99290F-49B6-415E-87A6-7BC32993843F}
 		{364154EF-6639-4438-A970-914293015AFA} = {A4971B81-8EC5-4CA2-96EF-82B6090DCC62}
 		{392B6321-BEB7-4B3E-9AD2-E6441961AB0A} = {364154EF-6639-4438-A970-914293015AFA}
+		{68380002-1CDB-4055-9BC7-2C4069E50D0C} = {364154EF-6639-4438-A970-914293015AFA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8EE0E1C3-79F2-4037-A00F-9EDD87BA0653}

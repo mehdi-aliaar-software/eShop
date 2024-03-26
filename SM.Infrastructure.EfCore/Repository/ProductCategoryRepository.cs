@@ -6,38 +6,20 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using _0_Framework.Application;
+using _0_Framework.Infrastructure;
 using SM.Application.Contracts.ProductCategory;
 
 namespace SM.Infrastructure.EfCore.Repository
 {
-    public class ProductCategoryRepository: IProductCategoryRepository
+    public class ProductCategoryRepository: RepositoryBase<long, ProductCategory>,  IProductCategoryRepository
     {
         private readonly ShopContext _shopContext;
 
-        public ProductCategoryRepository(ShopContext shopContext)
+        public ProductCategoryRepository(ShopContext shopContext):base(shopContext)
         {
             _shopContext = shopContext;
         }
 
-        public void Create(ProductCategory entity)
-        {
-            _shopContext.ProductCategories.Add(entity);
-        }
-
-        public ProductCategory GetBy(long id)
-        {
-            return _shopContext.ProductCategories.Find(id);
-        }
-
-        public List<ProductCategory> GetAll()
-        {
-            return _shopContext.ProductCategories.ToList();
-        }
-
-        public bool Exists(Expression<Func<ProductCategory, bool>> expression)
-        {
-            return _shopContext.ProductCategories.Any(expression);
-        }
 
         public EditProductCategory GetDetails(long id)
         {
@@ -67,9 +49,5 @@ namespace SM.Infrastructure.EfCore.Repository
             return query.OrderByDescending(x => x.Id).ToList();
         }
 
-        public void Save()
-        {
-            _shopContext.SaveChanges();
-        }
     }
 }
