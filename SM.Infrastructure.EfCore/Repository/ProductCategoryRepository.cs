@@ -21,6 +21,15 @@ namespace SM.Infrastructure.EfCore.Repository
         }
 
 
+        public List<ProductCategoryViewModel> GetProductCategories()
+        {
+            return _shopContext.ProductCategories.Select(x => new ProductCategoryViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+            }).ToList();
+        }
+
         public EditProductCategory GetDetails(long id)
         {
             

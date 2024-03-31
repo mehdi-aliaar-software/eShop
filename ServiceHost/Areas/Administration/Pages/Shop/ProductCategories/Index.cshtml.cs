@@ -1,9 +1,6 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 //using ShopManagement.Application.Contracts.ProductCategory;
-using System.Collections.Generic;
-using _0_Framework.Infrastructure;
 //using ShopManagement.Configuration.Permissions;
 using SM.Application.Contracts.ProductCategory;
 
