@@ -32,6 +32,7 @@ namespace SM.Infrastructure.EfCore.Repository
                     Title = x.Title,
                     BtnText = x.BtnText,
                     Text = x.Text,
+                    Link = x.Link,
                     IsRemoved = x.IsRemoved
                 })
                 .FirstOrDefault(x => x.Id == id);
