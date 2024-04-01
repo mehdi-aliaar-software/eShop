@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DM.Configuration\DM.Configuration.csproj" />
     <ProjectReference Include="..\SM.Configuration\SM.Configuration.csproj" />
   </ItemGroup>
 

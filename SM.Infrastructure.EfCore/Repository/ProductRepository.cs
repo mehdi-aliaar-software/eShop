@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using _0_Framework.Application;
 using _0_Framework.Domain;
 using _0_Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -58,7 +59,7 @@ namespace SM.Infrastructure.EfCore.Repository
                 Category = x.Category.Name,
                 Picture = x.Picture,
                 CategoryId=x.CategoryId,
-                CreationDate = x.CreationDate.ToString(CultureInfo.InvariantCulture),
+                CreationDate = x.CreationDate.ToFarsi(),
                 IsInStock = x.IsInStock
             });
 

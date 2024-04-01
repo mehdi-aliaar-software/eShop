@@ -1,12 +1,11 @@
-﻿using DM.Application.Contracts.CustomerDiscount;
-using _0_Framework.Domain;
-using System.Collections.Generic;
+﻿using _0_Framework.Domain;
+using DM.Application.Contracts.CustomerDiscount;
 
 namespace DM.Domain.CustomerDiscountAgg
 {
     public interface ICustomerDiscountRepository:IRepository<long,CustomerDiscount>
     {
-        EditCustomerDiscount GetDetail(long id);
+        EditCustomerDiscount GetDetails(long id);
 
         List<CustomerDiscountViewModel> Search(CustomerDiscountSearchModel searchModel);
     }

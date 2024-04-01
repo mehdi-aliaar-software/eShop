@@ -1,3 +1,4 @@
+using DM.Configuration;
 using Microsoft.Extensions.Configuration;
 using SM.Configuration;
 using System.Data.Common;
@@ -9,6 +10,10 @@ builder.Services.AddRazorPages();
 
 string conn = builder.Configuration.GetConnectionString("ShopDb");
 ShopManagementBootstrapper.Configure(builder.Services, conn);
+
+string discountConn = builder.Configuration.GetConnectionString("DiscountDb");
+DiscountManagementBootstrapper.Configure(builder.Services, discountConn);
+
 
 var app = builder.Build();
 
