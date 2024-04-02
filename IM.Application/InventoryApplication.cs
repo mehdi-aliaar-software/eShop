@@ -31,6 +31,7 @@ namespace IM.Application
         public OperationResult Edit(EditInventory command)
         {
             var operation = new OperationResult();
+            var inventory = _inventoryRepository.GetBy(command.Id);
             if (inventory == null)
             {
                 return operation.Failed(ApplicationMessages.RecordNotFound);
@@ -39,8 +40,6 @@ namespace IM.Application
             {
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
             }
-
-            //var inventory = new Inventory(command.ProductId, command.unitPrice);
 
             inventory.Edit(command.ProductId, command.unitPrice);
             _inventoryRepository.SaveChanges();
