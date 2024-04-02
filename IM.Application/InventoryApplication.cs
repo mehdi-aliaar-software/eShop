@@ -31,11 +31,6 @@ namespace IM.Application
         public OperationResult Edit(EditInventory command)
         {
             var operation = new OperationResult();
-
-            //var inventory = _inventoryRepository.Get(command.Id); // Get retuens inventory by productId,
-            var inventory = _inventoryRepository.GetBy(command.Id); // Get retuens inventory by Id,
-
-
             if (inventory == null)
             {
                 return operation.Failed(ApplicationMessages.RecordNotFound);
