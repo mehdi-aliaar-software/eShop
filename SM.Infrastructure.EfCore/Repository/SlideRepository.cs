@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using _0_Framework.Application;
 using _0_Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SM.Application.Contracts.Slide;
@@ -32,6 +33,7 @@ namespace SM.Infrastructure.EfCore.Repository
                     Title = x.Title,
                     BtnText = x.BtnText,
                     Text = x.Text,
+                    Link = x.Link,
                     IsRemoved = x.IsRemoved
                 })
                 .FirstOrDefault(x => x.Id == id);
@@ -48,7 +50,7 @@ namespace SM.Infrastructure.EfCore.Repository
                     Heading = x.Heading,
                     Title = x.Title,
                     IsRemoved = x.IsRemoved,
-                    CreationDate = x.CreationDate.ToString()
+                    CreationDate = x.CreationDate.ToFarsi()
                 })
                 .OrderByDescending(x=>x.Id).ToList();
             return result;

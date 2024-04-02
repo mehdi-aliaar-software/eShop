@@ -19,6 +19,7 @@ namespace SM.Application.Contracts.Slide
         public string BtnText { get;  set; }
 
         public bool IsRemoved { get;  set; }
+        public string Link { get;  set; }
     }
 
     //=== No need for this:

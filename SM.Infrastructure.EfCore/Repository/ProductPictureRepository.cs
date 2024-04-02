@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using _0_Framework.Application;
 using _0_Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SM.Application.Contracts.ProductPicture;
@@ -39,7 +40,7 @@ namespace SM.Infrastructure.EfCore.Repository
             {
                 Id = x.Id,
                 Picture = x.Picture,
-                CreationDate = x.CreationDate.ToString(),
+                CreationDate = x.CreationDate.ToFarsi(),
                 Product = x.Product.Name,
                 IsRemoved = x.IsRemoved,
                 ProductId = x.ProductId,
