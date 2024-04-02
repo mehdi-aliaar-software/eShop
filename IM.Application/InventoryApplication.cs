@@ -49,7 +49,7 @@ namespace IM.Application
         public OperationResult Increase(IncreaseInventory command)
         {
             var operation = new OperationResult();
-            var inventory = _inventoryRepository.Get(command.InventoryId);
+            var inventory = _inventoryRepository.GetBy(command.InventoryId);
             if (inventory == null)
             {
                 return operation.Failed(ApplicationMessages.RecordNotFound);
@@ -64,7 +64,7 @@ namespace IM.Application
         public OperationResult Reduce(ReduceInventory command)
         {
             var operation = new OperationResult();
-            var inventory = _inventoryRepository.Get(command.InventoryId);
+            var inventory = _inventoryRepository.GetBy(command.InventoryId);
             if (inventory == null)
             {
                 return operation.Failed(ApplicationMessages.RecordNotFound);
@@ -84,7 +84,7 @@ namespace IM.Application
             long operatorId = 1; // until we set up the users specs.
             foreach (var item in command)
             {
-                var inventory = _inventoryRepository.Get(item.ProductId);
+                var inventory = _inventoryRepository.GetBy(item.ProductId);
                 inventory.Reduce(item.Count, operatorId, item.Description, item.OrderId);
             }
 

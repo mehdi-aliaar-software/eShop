@@ -1,8 +1,6 @@
 using DM.Configuration;
-using Microsoft.Extensions.Configuration;
-using SM.Configuration;
-using System.Data.Common;
 using IM.Infrastructure.Configuration;
+using SM.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +34,6 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
-//app.MapDefaultControllerRoute();
+app.MapDefaultControllerRoute();
 
 app.Run();

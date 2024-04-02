@@ -76,17 +76,14 @@
                                                href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
-                                           @*  @if (item.IsRemoved)
-                                            {
-                                                <a asp-page="./Index" asp-page-handler="Restore" asp-route-id="@item.Id"
-                                                   class="btn btn-success btn-rounded waves-effect waves-light m-b-5"> فعال سازی</a>
-                                            }
-                                            else
-                                            {
-                                                <a asp-page="./Index" asp-page-handler="Remove" asp-route-id="@item.Id"
-                                                   class="btn btn-danger btn-rounded waves-effect waves-light m-b-5"> غیرفعال</a>
-                                            } *@
-
+                                            <a class="btn btn-success pull-right m-rl-5"
+                                               href="#showmodal=@Url.Page("./Index", "Increase", new { id = item.Id})">
+                                                <i class="fa fa-plus"></i> افزایش
+                                            </a>
+                                            <a class="btn btn-danger pull-right m-rl-5"
+                                               href="#showmodal=@Url.Page("./Index", "Reduce", new { id = item.Id})">
+                                                <i class="fa fa-minus"></i> کاهش
+                                            </a>
                                         </td>
                                     </tr>
                                 }
