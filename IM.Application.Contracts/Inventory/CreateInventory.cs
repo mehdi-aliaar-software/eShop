@@ -8,7 +8,7 @@ namespace IM.Application.Contracts.Inventory
 {
     public class CreateInventory
     {
-        public long ProductId { get; private set; }
-        public double unitPrice { get; private set; }
+        public long ProductId { get;  set; }
+        public double unitPrice { get;  set; }
     }
 }

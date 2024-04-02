@@ -4,8 +4,8 @@ public class InventoryViewModel
 {
     public long Id { get; set; }
     public string Product { get; set; }
-    public long ProductId { get; private set; }
-    public double unitPrice { get; private set; }
+    public long ProductId { get;  set; }
+    public double UnitPrice { get;  set; }
     public bool InStock { get; set; }
     public long CurrentCount { get; set; }
 }
