@@ -73,7 +73,16 @@ namespace _01_ShopQuery.Query
                     var specDiscount = discounts.FirstOrDefault(x => x.ProductId == product.Id);
                     if (specDiscount != null)
                     {
-                        product.DiscountRate= specDiscount.DiscountRate;
+                        if (specDiscount.DiscountRate>0)
+                        {
+                            product.HasDiscount=true;
+                            product.DiscountRate = specDiscount.DiscountRate;
+                            if (specInventory?.unitPrice>0)
+                            {
+                                product.PriceAfterDiscount = Math.Round( (specInventory.unitPrice *  (100 - product.DiscountRate)/100)).ToMoney();
+                            }
+                            
+                        }
                     }
                 }
             }
