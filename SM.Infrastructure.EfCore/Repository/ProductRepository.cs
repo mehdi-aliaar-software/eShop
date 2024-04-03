@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using _0_Framework.Application;
-using _0_Framework.Domain;
+﻿using _0_Framework.Application;
 using _0_Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SM.Application.Contracts.Product;
@@ -38,7 +30,6 @@ namespace SM.Infrastructure.EfCore.Repository
                 PictureTitle = x.PictureTitle,
                 ShortDescription = x.ShortDescription,
                 Slug = x.Slug,
-                UnitPrice = x.UnitPrice,
                 CategoryId = x.CategoryId,
 
 
@@ -55,12 +46,11 @@ namespace SM.Infrastructure.EfCore.Repository
                 Id= x.Id,
                 Name = x.Name,
                 Code = x.Code,
-                UnitPrice = x.UnitPrice,
                 Category = x.Category.Name,
                 Picture = x.Picture,
                 CategoryId=x.CategoryId,
                 CreationDate = x.CreationDate.ToFarsi(),
-                IsInStock = x.IsInStock
+
             });
 
             if (!string.IsNullOrWhiteSpace(searchModel.Name))

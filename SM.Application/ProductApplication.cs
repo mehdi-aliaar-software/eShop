@@ -24,7 +24,7 @@ namespace SM.Application
             {
                 return result.Failed(ApplicationMessages.DuplicatedRecord);
             }
-            var product = new Product(command.Name, command.Code, command.UnitPrice, command.ShortDescription,
+            var product = new Product(command.Name, command.Code,  command.ShortDescription,
                 command.Description, command.Picture, command.PictureAlt, command.PictureTitle, command.Slug, command.Keywords,
                 command.MetaDescription, command.CategoryId);
             _productRepository.Create(product);
@@ -47,7 +47,7 @@ namespace SM.Application
             }
 
             var slug = GenerateSlug.Slugify(command.Slug);
-            product.Edit(command.Name, command.Code, command.UnitPrice, command.ShortDescription,
+            product.Edit(command.Name, command.Code,  command.ShortDescription,
                 command.Description, command.Picture, command.PictureAlt, command.PictureTitle, slug, command.Keywords,
                 command.MetaDescription, command.CategoryId);
 
@@ -71,32 +71,5 @@ namespace SM.Application
             return _productRepository.GetDetails(id);
         }
 
-        public OperationResult IsStock(long id)
-        {
-            var result= new OperationResult();
-            var product = _productRepository.GetBy(id);
-            if (product == null)
-            {
-                return result.Failed(ApplicationMessages.RecordNotFound);
-            }
-            product.InStock();
-            _productRepository.SaveChanges();
-
-           return result.Succeeded();
-        }
-
-        public OperationResult NotInStock(long id)
-        {
-            var result = new OperationResult();
-            var product = _productRepository.GetBy(id);
-            if (product == null)
-            {
-                return result.Failed(ApplicationMessages.RecordNotFound);
-            }
-            product.NotInStock();
-            _productRepository.SaveChanges();
-
-            return result.Succeeded();
-        }
     }
 }

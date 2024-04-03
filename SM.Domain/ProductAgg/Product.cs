@@ -13,8 +13,7 @@ namespace SM.Domain.ProductAgg
     {
         public string Name { get; private set; }
         public string Code { get; private set; }
-        public double UnitPrice { get; private set; }
-        public bool IsInStock { get; private set; }
+     
         public string ShortDescription { get; private set; }
         public string Description { get; private set; }
         public string Picture { get; private set; }
@@ -29,12 +28,12 @@ namespace SM.Domain.ProductAgg
 
         public List<ProductPicture> ProductPictures { get; private set; }   
 
-        public Product(string name, string code, double unitPrice, string shortDescription, string description, 
+        public Product(string name, string code,  string shortDescription, string description, 
             string picture, string pictureAlt, string pictureTitle, string slug, string keywords, string metaDescription, long categoryId)
         {
             Name = name;
             Code = code;
-            UnitPrice = unitPrice;
+           
             //IsInStock = isInStock;
             ShortDescription = shortDescription;
             Description = description;
@@ -47,13 +46,13 @@ namespace SM.Domain.ProductAgg
             CategoryId = categoryId;
         }
 
-        public void Edit(string name, string code, double unitPrice, string shortDescription, string description,
-            string picture, string pictureAlt, string pictureTitle, string slug, string keywords, string metaDescription, long categoryId)
+        public void Edit(string name, string code,  string shortDescription, string description,
+            string picture, string pictureAlt, string pictureTitle, string slug, string keywords, 
+            string metaDescription, long categoryId)
         {
             Name = name;
             Code = code;
-            UnitPrice = unitPrice;
-            IsInStock = true;
+
             ShortDescription = shortDescription;
             Description = description;
             Picture = picture;
@@ -65,14 +64,6 @@ namespace SM.Domain.ProductAgg
             CategoryId = categoryId;
         }
 
-        public void InStock()
-        {
-            this.IsInStock = true;
-        }
-        public void NotInStock()
-        {
-            this.IsInStock = false;
-        }
     }
 
     

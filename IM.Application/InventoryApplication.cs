@@ -103,5 +103,11 @@ namespace IM.Application
             var result = _inventoryRepository.Search(searchModel);
             return result;
         }
+
+        public List<InventoryOperationViewModel> GetOperationLog(long inventoryId)
+        {
+            var result = _inventoryRepository.GetOperationLog(inventoryId);
+            return result;
+        }
     }
 }
