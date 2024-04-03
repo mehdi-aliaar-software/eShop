@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SM.Application.Contracts.Product;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 
 namespace ServiceHost.Areas.Administration.Pages.Inventory
@@ -104,6 +105,13 @@ namespace ServiceHost.Areas.Administration.Pages.Inventory
 
             var result = _inventoryApplication.Reduce(command);
             return new JsonResult(result);
+        }
+
+        public IActionResult OnGetLog(long id)
+        {
+            var log = _inventoryApplication.GetOperationLog(id);
+
+            return Partial("OperationLog", log);
         }
     }
 }
