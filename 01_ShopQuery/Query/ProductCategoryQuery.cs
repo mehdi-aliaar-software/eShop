@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using SM.Domain.ProductAgg;
 using SM.Infrastructure.EfCore;
 using IM.Infrastructure.EfCore;
+using DM.Infrastructure.EfCore;
 
 namespace _01_ShopQuery.Query
 {
@@ -17,11 +18,13 @@ namespace _01_ShopQuery.Query
     {
         private readonly ShopContext _context;
         private readonly InventoryContext _inventoryContext;
+        private readonly DiscountContext _discountContext;
 
-        public ProductCategoryQuery(ShopContext context, InventoryContext inventoryContext)
+        public ProductCategoryQuery(ShopContext context, InventoryContext inventoryContext, DiscountContext discountContext)
         {
             _context = context;
             _inventoryContext = inventoryContext;
+            _discountContext = discountContext;
         }
 
         public List<ProductCategoryQueryModel> GetProductCategories()
@@ -41,6 +44,10 @@ namespace _01_ShopQuery.Query
         public List<ProductCategoryQueryModel> GetProductCategoriesWithProducts()
         {
             var inventory = _inventoryContext.Inventory.Select(x => new { x.ProductId, x.unitPrice }).ToList();
+            var discounts = _discountContext
+                .CustomerDiscounts
+                .Where(x=>x.StartDate<=DateTime.Now && x.EndDate>=DateTime.Now)
+                .Select(x => new {x.ProductId, x.DiscountRate }).ToList();
 
             var categories = _context.ProductCategories
                 .Include(x => x.Products)
@@ -61,6 +68,12 @@ namespace _01_ShopQuery.Query
                     if (specInventory!=null)
                     {
                         product.Price = specInventory.unitPrice.ToMoney();
+                    }
+
+                    var specDiscount = discounts.FirstOrDefault(x => x.ProductId == product.Id);
+                    if (specDiscount != null)
+                    {
+                        product.DiscountRate= specDiscount.DiscountRate;
                     }
                 }
             }
