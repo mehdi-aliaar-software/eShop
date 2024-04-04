@@ -28,8 +28,8 @@
     <!--=======  search form  =======-->
 
     <div class="search-form">
-        <form action="#">
-            <input type="search" placeholder="جستجو در فروشگاه ...">
+        <form method="get" asp-page="/Search">
+            <input type="search" name="value" id="value" placeholder="جستجو در فروشگاه ...">
             <button type="submit">
                 <i class="ion-android-search"></i>
             </button>
