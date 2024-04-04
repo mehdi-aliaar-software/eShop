@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _01_ShopQuery.Contracts.Product
+﻿namespace _01_ShopQuery.Contracts.Product
 {
     public class ProductQueryModel
     {
@@ -20,6 +14,7 @@ namespace _01_ShopQuery.Contracts.Product
         public string Category { get; set; }
         public string Slug { get; set; }
         public bool HasDiscount { get; set; }
+        public string DiscountExpireDate { get; set; }
 
     }
 }

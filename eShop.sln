@@ -61,7 +61,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IM.Infrastructure.Configura
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IM.Application", "IM.Application\IM.Application.csproj", "{3E9DE22C-7EE0-4130-BD54-1CE996EB0B1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IM.Application.Contracts", "IM.Application.Contracts\IM.Application.Contracts.csproj", "{28D2FAA1-E0E4-4017-884D-E862D9A4091F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IM.Application.Contracts", "IM.Application.Contracts\IM.Application.Contracts.csproj", "{28D2FAA1-E0E4-4017-884D-E862D9A4091F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
