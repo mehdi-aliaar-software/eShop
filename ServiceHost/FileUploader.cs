@@ -11,7 +11,7 @@ namespace ServiceHost
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public string Uploader(IFormFile file, string path)
+        public string Upload(IFormFile file, string path)
         {
             if (file==null)
             {
@@ -24,10 +24,12 @@ namespace ServiceHost
                 Directory.CreateDirectory(directoryPath);
             }
 
-            var filePath = $"{directoryPath}/{file.FileName}";
+            var fileName = $"{DateTime.Now.ToFileName()}-{file.FileName}"; 
+
+            var filePath = $"{directoryPath}/{fileName}";
             using var output=System.IO.File.Create(filePath);
             file.CopyToAsync(output);
-            return $"{path}/{file.FileName}" ;
+            return $"{path}/{fileName}" ;
         }
     }
 }

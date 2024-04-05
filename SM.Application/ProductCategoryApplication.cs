@@ -57,7 +57,7 @@ namespace SM.Application
 
             string slug = GenerateSlug.Slugify(command.Name);
             var picturePath = $"{command.Slug}";
-            var pictureName = _fileUploader.Uploader(command.Picture, picturePath);
+            var pictureName = _fileUploader.Upload(command.Picture, picturePath);
 
             //productCategory.Edit(command.Name, command.Description, command.Picture, command.PictureAlt, 
             //    command.PictureTitle, command.Keywords, command.MetaDescription, slug);
