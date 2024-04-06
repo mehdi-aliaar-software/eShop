@@ -25,7 +25,65 @@ namespace _01_ShopQuery.Query
 
         public ProductQueryModel Getdetails(string slug)
         {
-            throw new NotImplementedException();
+            var _inventory = _inventoryContext.Inventory.Select(x => new { x.Id,x.ProductId, x.unitPrice, x.InStock }).ToList();
+
+            var discounts = _discountContext
+                .CustomerDiscounts
+                .Where(x => x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now)
+                .Select(x => new { x.ProductId, x.DiscountRate, x.EndDate }).ToList();
+
+            var product = _context
+                .Products
+                .Include(x => x.Category)
+                .Select(x => new ProductQueryModel
+                {
+                    Id = x.Id,
+                    Category = x.Category.Name,
+                    Name = x.Name,
+                    Picture = x.Picture,
+                    PictureAlt = x.PictureAlt,
+                    PictureTitle = x.PictureTitle,
+                    Slug = x.Slug,
+                    CategorySlug = x.Category.Slug,
+                    Code=x.Code,
+                    ShortDescription = x.ShortDescription,
+                    Description = x.Description,
+                    Keywords = x.Keywords,
+                    MetaDescription = x.MetaDescription,
+                    
+                }).FirstOrDefault(x => x.Slug == slug);
+            if (product == null)
+            {
+                return new ProductQueryModel();
+            }
+
+
+            var productInventory = _inventory.FirstOrDefault(x => x.Id == product.Id);
+            if (productInventory != null)
+            {
+                product.IsInStock = productInventory.InStock;
+                var price = productInventory.unitPrice;
+                product.Price = price.ToMoney();
+
+                var productDiscount = discounts.FirstOrDefault(x => x.ProductId == product.Id);
+                if (productDiscount != null)
+                {
+                    if (productDiscount.DiscountRate > 0)
+                    {
+                        product.DiscountExpireDate = productDiscount .EndDate.ToDiscountFormat();
+                        product.HasDiscount = true;
+                        product.DiscountRate = productDiscount.DiscountRate;
+                        if (productInventory?.unitPrice > 0)
+                        {
+                            product.PriceAfterDiscount =
+                                Math.Round((productInventory.unitPrice * (100 - product.DiscountRate) / 100)).ToMoney();
+                        }
+                    }
+                }
+
+            }
+            
+            return product;
         }
 
         public List<ProductQueryModel> GetLatestArrivals()
@@ -107,7 +165,7 @@ namespace _01_ShopQuery.Query
                     Slug = x.Slug
                 }).AsNoTracking();
             query = query.Where(x => x.Name.Contains(value) || x.ShortDescription.Contains(value));
-            var products = query.OrderByDescending(x=>x.Id).ToList();
+            var products = query.OrderByDescending(x => x.Id).ToList();
 
             foreach (var product in products)
             {
