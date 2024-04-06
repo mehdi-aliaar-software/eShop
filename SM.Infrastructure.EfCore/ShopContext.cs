@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using SM.Domain.CommentAgg;
 using SM.Domain.ProductAgg;
 using SM.Domain.ProductCategoryAgg;
 using SM.Domain.ProductPictureAgg;
@@ -18,6 +19,8 @@ namespace SM.Infrastructure.EfCore
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductPicture> ProductPictures { get; set; }
         public DbSet<Slide> Slides { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
 
         public ShopContext(DbContextOptions<ShopContext> options):base(options)
         {
