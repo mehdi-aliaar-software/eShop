@@ -1,7 +1,6 @@
-﻿
-
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using _0_Framework.Application;
+using Microsoft.AspNetCore.Http;
 using SM.Application.Contracts.Product;
 
 namespace SM.Application.Contracts.ProductPicture
@@ -12,7 +11,8 @@ namespace SM.Application.Contracts.ProductPicture
         public long ProductId { get;  set; }
 
         //[Required(ErrorMessage = ValidationMessages.IsRequired)]
-        public string Picture { get;  set; }
+        [MaxFileSize(2*1024*1024,ErrorMessage = ValidationMessages.MaxFileSize)]
+        public IFormFile Picture { get;  set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
 

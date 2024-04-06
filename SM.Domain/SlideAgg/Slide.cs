@@ -8,7 +8,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SM.Domain.SlideAgg
 {
-    public class Slide:EntityBase
+    public class Slide : EntityBase
     {
         public string Picture { get; private set; }
         public string PictureAlt { get; private set; }
@@ -21,11 +21,13 @@ namespace SM.Domain.SlideAgg
         public string BtnText { get; private set; }
         public string Link { get; private set; }
 
-        public bool IsRemoved { get; private set; } 
-        public Slide(string picture, string pictureAlt, string pictureTitle, string heading, 
+        public bool IsRemoved { get; private set; }
+        public Slide(string picture, string pictureAlt, string pictureTitle, string heading,
             string title, string text, string link, string btnText)
         {
+
             Picture = picture;
+
             PictureAlt = pictureAlt;
             PictureTitle = pictureTitle;
             Heading = heading;
@@ -38,7 +40,10 @@ namespace SM.Domain.SlideAgg
         public void Edit(string picture, string pictureAlt, string pictureTitle, string heading,
             string title, string text, string link, string btnText)
         {
-            Picture = picture;
+            if (!string.IsNullOrWhiteSpace(picture))
+            {
+                Picture = picture;
+            }
             PictureAlt = pictureAlt;
             PictureTitle = pictureTitle;
             Heading = heading;
@@ -55,7 +60,7 @@ namespace SM.Domain.SlideAgg
 
         public void Restore()
         {
-            IsRemoved=false;
+            IsRemoved = false;
         }
     }
 }

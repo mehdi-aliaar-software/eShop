@@ -25,12 +25,20 @@ namespace SM.Infrastructure.EfCore.Repository
             var result= _context.ProductPictures.Select(x=>new EditProductPicture
             {
                 Id = x.Id,
-                Picture = x.Picture,
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle,
                 ProductId = x.ProductId
             }).FirstOrDefault(p => p.Id == id);
             return result;
+        }
+
+        public ProductPicture GetWithProductAndCategoryBy(long id)
+        {
+            return _context
+                .ProductPictures
+                .Include(x => x.Product)
+                .ThenInclude(x => x.Category)
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public List<ProductPictureViewModel> Search(ProductPictureSearchModel searchModel)

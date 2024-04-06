@@ -10,38 +10,46 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SM.Application
 {
-    public class SlideApplication: ISlideApplication
+    public class SlideApplication : ISlideApplication
     {
+        private readonly IFileUploader _fileUploader;
         private readonly ISlideRepository _slideRepository;
 
-        public SlideApplication(ISlideRepository slideRepository)
+        public SlideApplication(ISlideRepository slideRepository, IFileUploader fileUploader)
         {
             _slideRepository = slideRepository;
+            _fileUploader = fileUploader;
         }
 
         public OperationResult Create(CreateSlide command)
         {
             var operaion = new OperationResult();
 
-            var slide = new Slide(command.Picture, command.PictureAlt, command.PictureTitle, command.Heading,
+            var picturePath = _fileUploader.Upload(command.Picture, "slides");
+
+            var slide = new Slide(picturePath, command.PictureAlt, command.PictureTitle, command.Heading,
                 command.Title, command.Text, command.Link, command.BtnText);
 
             _slideRepository.Create(slide);
             _slideRepository.SaveChanges();
-            return operaion.Succeeded();    
+            return operaion.Succeeded();
         }
 
         public OperationResult Edit(EditSlide command)
         {
             var operaion = new OperationResult();
+
             var slide = _slideRepository.GetBy(command.Id);
-            if (slide==null)
+            if (slide == null)
             {
                 return operaion.Failed(ApplicationMessages.RecordNotFound);
             }
 
-            slide.Edit(command.Picture, command.PictureAlt, command.PictureTitle, command.Heading,
-                command.Title, command.Text,command.Link, command.BtnText);
+            var picturePath = _fileUploader.Upload(command.Picture, "slides");
+
+
+            slide.Edit(picturePath, command.PictureAlt, command.PictureTitle, command.Heading,
+                command.Title, command.Text, command.Link, command.BtnText);
 
             _slideRepository.SaveChanges();
             return operaion.Succeeded();
