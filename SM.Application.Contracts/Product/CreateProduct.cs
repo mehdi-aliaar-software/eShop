@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _0_Framework.Application;
+﻿using _0_Framework.Application;
+using Microsoft.AspNetCore.Http;
 using SM.Application.Contracts.ProductCategory;
+using System.ComponentModel.DataAnnotations;
 
 namespace SM.Application.Contracts.Product
 {
@@ -20,7 +16,9 @@ namespace SM.Application.Contracts.Product
   
         public string ShortDescription { get;  set; }
         public string Description { get;  set; }
-        public string Picture { get;  set; }
+
+
+        public IFormFile Picture { get;  set; }
         public string PictureAlt { get;  set; }
         public string PictureTitle { get;  set; }
 

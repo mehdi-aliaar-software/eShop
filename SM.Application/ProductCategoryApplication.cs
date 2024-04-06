@@ -12,11 +12,13 @@ namespace SM.Application
 {
     public class ProductCategoryApplication: IProductCategoryApplication
     {
+        private readonly IFileUploader _fileUploader;
         private readonly IProductCategoryRepository _productCategoryRepository;
 
-        public ProductCategoryApplication(IProductCategoryRepository productCategoryRepository)
+        public ProductCategoryApplication(IProductCategoryRepository productCategoryRepository, IFileUploader fileUploader)
         {
             _productCategoryRepository = productCategoryRepository;
+            _fileUploader = fileUploader;
         }
         public OperationResult Create(CreateProductCategory command)
         {
@@ -27,8 +29,11 @@ namespace SM.Application
             }
 
             var slug = GenerateSlug.Slugify(command.Name);
-            var productCategory = new ProductCategory(command.Name, command.Description, command.Picture,
+            //var productCategory = new ProductCategory(command.Name, command.Description, command.Picture,
+            //    command.PictureAlt, command.PictureTitle, command.Keywords, command.MetaDescription, slug);
+            var productCategory = new ProductCategory(command.Name, command.Description, "",
                 command.PictureAlt, command.PictureTitle, command.Keywords, command.MetaDescription, slug);
+
             _productCategoryRepository.Create(productCategory);
             _productCategoryRepository.SaveChanges();
             return operationResult.Succeeded();
@@ -51,7 +56,13 @@ namespace SM.Application
             }
 
             string slug = GenerateSlug.Slugify(command.Name);
-            productCategory.Edit(command.Name, command.Description, command.Picture, command.PictureAlt, command.PictureTitle, command.Keywords, command.MetaDescription, slug);
+            var picturePath = $"{command.Slug}";
+            var pictureName = _fileUploader.Upload(command.Picture, picturePath);
+
+            //productCategory.Edit(command.Name, command.Description, command.Picture, command.PictureAlt, 
+            //    command.PictureTitle, command.Keywords, command.MetaDescription, slug);
+            productCategory.Edit(command.Name, command.Description, pictureName, command.PictureAlt,
+                command.PictureTitle, command.Keywords, command.MetaDescription, slug);
             _productCategoryRepository.SaveChanges();
             return operationResult.Succeeded();
         }

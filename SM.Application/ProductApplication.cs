@@ -6,16 +6,22 @@ using System.Text;
 using System.Threading.Tasks;
 using _0_Framework.Application;
 using SM.Domain.ProductAgg;
+using SM.Domain.ProductCategoryAgg;
 
 namespace SM.Application
 {
+    
     public class ProductApplication : IProductApplication
     {
         private readonly IProductRepository _productRepository;
+        private readonly IFileUploader _fileUploader;
+        private readonly IProductCategoryRepository _productCategoryRepository;
 
-        public ProductApplication(IProductRepository productRepository)
+        public ProductApplication(IProductRepository productRepository, IFileUploader fileUploader, IProductCategoryRepository productCategoryRepository)
         {
             _productRepository = productRepository;
+            _fileUploader = fileUploader;
+            _productCategoryRepository = productCategoryRepository;
         }
         public OperationResult Create(CreateProduct command)
         {
@@ -24,8 +30,13 @@ namespace SM.Application
             {
                 return result.Failed(ApplicationMessages.DuplicatedRecord);
             }
+            var slug=command.Slug.Slugify();
+            var categorySlug = _productCategoryRepository.GetSlugBy(command.CategoryId);
+            var path = $"{categorySlug}/{slug}";
+            var picturePath = _fileUploader.Upload(command.Picture, path);
+
             var product = new Product(command.Name, command.Code,  command.ShortDescription,
-                command.Description, command.Picture, command.PictureAlt, command.PictureTitle, command.Slug, command.Keywords,
+                command.Description, picturePath, command.PictureAlt, command.PictureTitle, slug, command.Keywords,
                 command.MetaDescription, command.CategoryId);
             _productRepository.Create(product);
             _productRepository.SaveChanges();
@@ -35,7 +46,7 @@ namespace SM.Application
         public OperationResult Edit(EditProduct command)
         {
             var result = new OperationResult();
-            var product = _productRepository.GetBy(command.Id);
+            var product = _productRepository.GetProductWithCategory(command.Id);
             if (product == null)
             {
                 return result.Failed(ApplicationMessages.RecordNotFound);
@@ -46,9 +57,14 @@ namespace SM.Application
                 return result.Failed(ApplicationMessages.DuplicatedRecord);
             }
 
-            var slug = GenerateSlug.Slugify(command.Slug);
-            product.Edit(command.Name, command.Code,  command.ShortDescription,
-                command.Description, command.Picture, command.PictureAlt, command.PictureTitle, slug, command.Keywords,
+            //var slug = GenerateSlug.Slugify(command.Slug);
+
+            var slug = command.Slug.Slugify();
+            var path = $"{product.Category.Slug}/{slug}";
+            var picturePath = _fileUploader.Upload(command.Picture, path);
+
+            product.Edit(command.Name, command.Code,  command.ShortDescription,command.Description, 
+                picturePath, command.PictureAlt, command.PictureTitle, slug, command.Keywords,
                 command.MetaDescription, command.CategoryId);
 
             _productRepository.SaveChanges();

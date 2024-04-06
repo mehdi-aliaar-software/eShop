@@ -1,5 +1,7 @@
+using _0_Framework.Application;
 using DM.Configuration;
 using IM.Infrastructure.Configuration;
+using ServiceHost;
 using SM.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,8 @@ DiscountManagementBootstrapper.Configure(builder.Services, discountConn);
 
 string inventoryConn = builder.Configuration.GetConnectionString("InventoryDb");
 InventoryManagementBootstrapper.Configure(builder.Services, inventoryConn);
+
+builder.Services.AddTransient<IFileUploader, FileUploader>();
 
 var app = builder.Build();
 

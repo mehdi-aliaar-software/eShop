@@ -35,9 +35,24 @@ namespace SM.Infrastructure.EfCore.Repository
             
             return _shopContext.ProductCategories.Select(x=>new EditProductCategory
             {
-                Id = x.Id, Name = x.Name, Description = x.Description, Keywords = x.Keywords, MetaDescription = x.MetaDescription,
-                Picture = x.Picture, PictureAlt = x.PictureAlt, PictureTitle = x.PictureTitle, Slug = x.Slug
+                Id = x.Id, 
+                Name = x.Name, 
+                Description = x.Description, 
+                Keywords = x.Keywords, 
+                MetaDescription = x.MetaDescription,
+                //Picture = x.Picture, 
+                PictureAlt = x.PictureAlt, 
+                PictureTitle = x.PictureTitle, 
+                Slug = x.Slug
             }).FirstOrDefault(x => x.Id == id);
+        }
+
+        public string GetSlugBy(long id)
+        {
+            return _shopContext.ProductCategories
+                .Select(x => new { x.Id, x.Slug })
+                .FirstOrDefault(x => x.Id == id)
+                .Slug;
         }
 
         public List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)
