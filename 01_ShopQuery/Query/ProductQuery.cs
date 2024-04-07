@@ -4,6 +4,7 @@ using _01_ShopQuery.Contracts.ProductCategory;
 using DM.Infrastructure.EfCore;
 using IM.Infrastructure.EfCore;
 using Microsoft.EntityFrameworkCore;
+using SM.Domain.CommentAgg;
 using SM.Domain.ProductAgg;
 using SM.Infrastructure.EfCore;
 
@@ -35,6 +36,8 @@ namespace _01_ShopQuery.Query
             var product = _context
                 .Products
                 .Include(x => x.Category)
+                .Include(x=>x.ProductPictures)
+                .Include(x=>x.Comments)
                 .Select(x => new ProductQueryModel
                 {
                     Id = x.Id,
@@ -50,6 +53,7 @@ namespace _01_ShopQuery.Query
                     Description = x.Description,
                     Keywords = x.Keywords,
                     MetaDescription = x.MetaDescription,
+                    Comments = MapComment(x.Comments)
                     
                 }).FirstOrDefault(x => x.Slug == slug);
             if (product == null)
@@ -84,6 +88,18 @@ namespace _01_ShopQuery.Query
             }
             
             return product;
+        }
+
+        private static List<CommentQueryModel> MapComment(List<Comment> comments)
+        {
+            var result=comments.Where(x=>!x.IsCanceled && x.IsConfirmed)
+                .Select(x=>new CommentQueryModel { 
+                    Id= x.Id,
+                    Name= x.Name,
+                    Message= x.Message,
+                }).OrderByDescending(x=>x.Id ).ToList();
+
+            return result;  
         }
 
         public List<ProductQueryModel> GetLatestArrivals()

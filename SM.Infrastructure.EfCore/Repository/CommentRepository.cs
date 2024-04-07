@@ -46,12 +46,14 @@ namespace SM.Infrastructure.EfCore.Repository
             {
                 query = query.Where(x => x.Email.Contains(searchModel.Email));
             }
-            //if (!string.IsNullOrWhiteSpace(searchModel.))
+
+            //var result1 = query.ToList();
+            //if (result1 == null)
             //{
-            //    query = query.Where(x => x.Name.Contains(searchModel.Name));
+            //    return new List<CommentViewModel>();
             //}
 
-            var result = query.OrderByDescending(x=>x.Id).ToList();
+            var result = query.OrderByDescending(x => x.Id).ToList();
             return result;
         }
     }

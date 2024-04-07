@@ -17,6 +17,31 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
+                <h3 class="panel-title">جستجو در محصولات</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-inline" role="form" method="get">
+                    <div class="form-group">
+                        <label class="sr-only" asp-for="SearchModel.Name"></label>
+                        <input class="form-control" asp-for="SearchModel.Name" placeholder="نام">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" asp-for="SearchModel.Email"></label>
+                        <input class="form-control" asp-for="SearchModel.Email" placeholder="ایمیل">
+                    </div>
+                   
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>
+                    <a class="btn btn-primary waves-effect waves-light m-l-10" asp-page="./Index">مشاهده همه</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
                 <h3 class="panel-title">لیست نظرات</h3>
             </div>
             <div class="panel-body">
@@ -58,7 +83,7 @@
                                                 <span class="text-success"> تایید شده</span>
                                             }
                                         </td>
-                               
+
 
                                         <td>
                                             <a asp-page="./Index" asp-page-handler="Cancel" asp-route-id="@item.Id"
@@ -68,7 +93,7 @@
                                                 <a asp-page="./Index" asp-page-handler="Confirm" asp-route-id="@item.Id"
                                                    class="btn btn-success btn-rounded waves-effect waves-light m-b-5">تایید</a>
                                             }
-                                            
+
                                         </td>
                                     </tr>
                                 }
