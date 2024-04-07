@@ -1,4 +1,5 @@
 using _0_Framework.Application;
+using BM.Infrastructure.Configuration;
 using DM.Configuration;
 using IM.Infrastructure.Configuration;
 using ServiceHost;
@@ -18,6 +19,8 @@ DiscountManagementBootstrapper.Configure(builder.Services, discountConn);
 string inventoryConn = builder.Configuration.GetConnectionString("InventoryDb");
 InventoryManagementBootstrapper.Configure(builder.Services, inventoryConn);
 
+string blogConn = builder.Configuration.GetConnectionString("BlogDb");
+BlogManagementrBootstrapper.Configure(builder.Services, blogConn);
 builder.Services.AddTransient<IFileUploader, FileUploader>();
 
 var app = builder.Build();
