@@ -429,16 +429,15 @@
     <script src="~/AdminTheme/assets/js/persian-date.min.js"></script>
     <script src="~/AdminTheme/assets/js/persian-datepicker.min.js"></script>
 
-    @RenderSection("Scripts", false)
-    
     <script>
         $('.persianDateInput').persianDatepicker({
-            // observer: true,
             format: 'YYYY/MM/DD',
-            // altField: '.observer-example-alt'
-            autoClose:true
+            autoClose:true,
+            initialValueType:"persian"
         });
     </script>
+    
+    @RenderSection("Scripts", false)
 
-</body>
+    </body>
 </html>
