@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Domain;
+using BM.Domain.ArticleAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,9 @@ namespace BM.Domain.ArticleCategoryAgg
         public string Keywords { get; private set; }
         public string MetaDescription { get; private set; }
         public string Slug { get; private set; }
-        public string? CanonicalAddress { get; private set; }
+        public string CanonicalAddress { get; private set; }
+        public List<Article> Articles { get; private set; }
+
 
         public ArticleCategory(string name, string picture, string pictureTitle , string pictureAlt, string description, 
             int showOrder, string keywords, string metaDescription, string slug, string? canonicalAddress)

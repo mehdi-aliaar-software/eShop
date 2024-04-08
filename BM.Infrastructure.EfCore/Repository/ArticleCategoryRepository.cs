@@ -36,9 +36,17 @@ namespace BM.Infrastructure.EfCore.Repository
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle
                 
+                
             }).FirstOrDefault(x => x.Id == id);
             return result;
         }
+
+        public string GetSlugBy(long id)
+        {
+            var result = _blogContext.ArticleCategories.Select(x => new { x.Id, x.Slug })
+                .FirstOrDefault(x => x.Id == id).Slug;
+            return result;
+        }   
 
         public List<ArticleCategoryViewModel> Search(ArticleCategorySearchModel searchModel)
         {

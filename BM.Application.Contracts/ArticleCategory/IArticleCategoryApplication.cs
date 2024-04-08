@@ -12,6 +12,8 @@ namespace BM.Application.Contracts.ArticleCategory
         OperationResult Create(CreateArticleCategory command);
         OperationResult Edit(EditArticleCategory command);
         EditArticleCategory Getdatails(long id);
+
+        //string GetSlugBy(long id);
         List<ArticleCategoryViewModel> Search(ArticleCategorySearchModel searchModel);
     }
 }

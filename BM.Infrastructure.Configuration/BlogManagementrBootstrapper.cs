@@ -1,5 +1,7 @@
 ﻿using BM.Application;
+using BM.Application.Contracts.Article;
 using BM.Application.Contracts.ArticleCategory;
+using BM.Domain.ArticleAgg;
 using BM.Domain.ArticleCategoryAgg;
 using BM.Infrastructure.EfCore;
 using BM.Infrastructure.EfCore.Repository;
@@ -15,8 +17,8 @@ namespace BM.Infrastructure.Configuration
             services.AddTransient<IArticleCategoryApplication, ArticleCategoryApplication>();
             services.AddTransient<IArticleCategoryRepository, ArticleCategoryRepository>();
 
-            //services.AddTransient<IColleagueDiscountApplication, ColleagueDiscountApplication>();
-            //services.AddTransient<IColleagueDiscountRepository, ColleagueDiscountRepository>();
+            services.AddTransient<IArticleApplication, ArticleApplication>();
+            services.AddTransient<IArticleRepository,  ArticleRepository>();
 
             services.AddDbContext<BlogContext>(x => x.UseSqlServer(connectionString));
         }

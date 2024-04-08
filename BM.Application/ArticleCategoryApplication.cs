@@ -75,6 +75,11 @@ namespace BM.Application
             return result;
         }
 
+        //public string GetSlugBy(long id)
+        //{
+        //    var result=_articleCategoryRepository.get
+        //}
+
         public List<ArticleCategoryViewModel> Search(ArticleCategorySearchModel searchModel)
         {
             var result= _articleCategoryRepository.Search(searchModel);
