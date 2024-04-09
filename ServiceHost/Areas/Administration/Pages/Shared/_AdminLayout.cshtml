@@ -204,7 +204,7 @@
                             <a class="waves-effect"><i class="md md-mail"></i><span> سیستم بلاگینگ </span><span class="pull-right"><i class="md md-add"></i></span></a>
                             <ul class="list-unstyled">
                                 <li><a asp-page="/Blog/ArticleCategories/Index">گروه مقالات</a></li>
-                                <li><a asp-page="">مقاله </a></li>
+                                <li><a asp-page="/Blog/Articles/Index">مقاله </a></li>
 
                                 @*  <li><a asp-page="/shop/ProductCategories/Index">گروه محصولات</a></li>
                                 <li><a asp-page="/shop/Products/Index">محصولات</a></li>
@@ -428,6 +428,8 @@
 
     <script src="~/AdminTheme/assets/js/persian-date.min.js"></script>
     <script src="~/AdminTheme/assets/js/persian-datepicker.min.js"></script>
+    
+    @RenderSection("Scripts", false)
 
     <script>
         $('.persianDateInput').persianDatepicker({
@@ -436,8 +438,17 @@
             initialValueType:"persian"
         });
     </script>
+
+    <script src="https://cdn.tiny.cloud/1/oablg7wahur1hm10nhfj82c7of41f1a4rfxom5yk4y0dh092/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     
-    @RenderSection("Scripts", false)
+    <script>
+        tinymce.init({
+            selector: '#BodyContent',
+            plugins: 'advlist autolink  link lists media  table charmap preview print hr  anchor  pagebreak',
+            toolbar: 'floating',
+
+        });
+    </script>
 
     </body>
 </html>

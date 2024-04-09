@@ -71,15 +71,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BM.Domain", "BM.Domain\BM.D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BM.Application", "BM.Application", "{D6D4DA60-7DB6-4403-AE51-07081DFAFF56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BM.Application.Contracts", "BM.Application.Contracts\BM.Application.Contracts.csproj", "{C186BA47-D38A-4FA9-838B-852D7A831F62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BM.Application.Contracts", "BM.Application.Contracts\BM.Application.Contracts.csproj", "{C186BA47-D38A-4FA9-838B-852D7A831F62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BM.Application", "BM.Application\BM.Application.csproj", "{F0A6862C-75CA-47BD-871F-9FFC8969F15A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BM.Application", "BM.Application\BM.Application.csproj", "{F0A6862C-75CA-47BD-871F-9FFC8969F15A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BM.Infrastructure", "BM.Infrastructure", "{B697A113-7328-4BE4-957B-75ACF09C7212}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BM.Infrastructure.EfCore", "BM.Infrastructure.EfCore\BM.Infrastructure.EfCore.csproj", "{33188595-14B6-444B-AC4B-A27DB0FE687C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BM.Infrastructure.EfCore", "BM.Infrastructure.EfCore\BM.Infrastructure.EfCore.csproj", "{33188595-14B6-444B-AC4B-A27DB0FE687C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BM.Infrastructure.Configuration", "BM.Infrastructure.Configuration\BM.Infrastructure.Configuration.csproj", "{06FF9F16-158D-4679-98F3-B8CDB9A7625B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BM.Infrastructure.Configuration", "BM.Infrastructure.Configuration\BM.Infrastructure.Configuration.csproj", "{06FF9F16-158D-4679-98F3-B8CDB9A7625B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
