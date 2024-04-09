@@ -58,6 +58,7 @@ namespace ServiceHost.Areas.Administration.Pages.Discounts.CustomerDiscounts
         {
             var customerDiscount = _customerDiscountApplication.GetDetails(id);
             customerDiscount.Products = _productApplication.GetProducts();
+
             return Partial("Edit", customerDiscount);
         }
 
