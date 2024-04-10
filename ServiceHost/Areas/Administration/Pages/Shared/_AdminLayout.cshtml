@@ -426,17 +426,28 @@
     <script src="~/AdminTheme/assets/js/persian-date.min.js"></script>
     <script src="~/AdminTheme/assets/js/persian-datepicker.min.js"></script>
 
-    <script>
-        $('.persianDateInput').persianDatepicker({
-            observer: true,
-            format: 'YYYY/MM/DD',
-            altField: '.observer-example-alt'
-            autoClose: true,
-            initialValueType: 'persian'
-        });
-    </script>
-    
+
+
     @RenderSection("Scripts", false)
 
-    </body>
+    <script>
+        $('.persianDateInput').persianDatepicker({
+            format: 'YYYY/MM/DD',
+            autoClose: true,
+            initialValueType: "persian"
+        });
+    </script>
+
+    <script src="https://cdn.tiny.cloud/1/oablg7wahur1hm10nhfj82c7of41f1a4rfxom5yk4y0dh092/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: '#BodyContent',
+            plugins: 'advlist autolink  link lists media  table charmap preview print hr  anchor  pagebreak',
+            toolbar: 'floating',
+
+        });
+    </script>
+
+</body>
 </html>

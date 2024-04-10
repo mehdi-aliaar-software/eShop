@@ -1,4 +1,7 @@
-﻿using BM.Application;
+﻿using _01_ShopQuery.Contracts.Article;
+using _01_ShopQuery.Contracts.ArticleCategory;
+using _01_ShopQuery.Query;
+using BM.Application;
 using BM.Application.Contracts.Article;
 using BM.Application.Contracts.ArticleCategory;
 using BM.Domain.ArticleAgg;
@@ -19,6 +22,11 @@ namespace BM.Infrastructure.Configuration
 
             services.AddTransient<IArticleApplication, ArticleApplication>();
             services.AddTransient<IArticleRepository,  ArticleRepository>();
+
+            services.AddTransient<IArticleQuery, ArticleQuery>();
+            services.AddTransient<IArticleCategoryQuery, ArticleCategoryQuery>();
+
+
 
             services.AddDbContext<BlogContext>(x => x.UseSqlServer(connectionString));
         }
