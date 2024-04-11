@@ -29,6 +29,7 @@ namespace _01_ShopQuery.Query
                 CategoryName = x.Category.Name,
                 Description = x.Description,
                 Keywords = x.Keywords,
+                
                 MetaDescription = x.MetaDescription,
                 Picture = x.Picture,
                 PictureAlt = x.PictureAlt,
@@ -38,10 +39,12 @@ namespace _01_ShopQuery.Query
                 ShortDescription = x.ShortDescription
 
             }).FirstOrDefault(x => x.Slug == slug);
+
+            result.KeywordList = result.Keywords.Split(",").ToList();
             return result;
         }
 
-        public List<ArticleQueryModel> latestArticles()
+        public List<ArticleQueryModel> LatestArticles()
         {
             var articles = _context.Articles
                 .Include(x => x.Category)

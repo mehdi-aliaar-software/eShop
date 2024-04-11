@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _01_ShopQuery.Contracts.Article
+﻿namespace _01_ShopQuery.Contracts.Article
 {
     public class ArticleQueryModel
     {
@@ -16,6 +10,7 @@ namespace _01_ShopQuery.Contracts.Article
         public string Description { get;  set; }
 
         public string Keywords { get;  set; }
+        public List<string> KeywordList { get;  set; }
         public string MetaDescription { get;  set; }
         public string Slug { get;  set; }
         public string CanonicalAddress { get;  set; }

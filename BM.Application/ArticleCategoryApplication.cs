@@ -60,9 +60,11 @@ namespace BM.Application
 
             var slug = command.Slug.Slugify();
             var picturePath = _fileUploader.Upload(command.Picture, slug);
-            articleCategory.Edit(command.Name, command.Description, picturePath,
-                command.PictureAlt, command.PictureTitle, command.ShowOrder, 
-                command.MetaDescription, slug, command.Keywords, command.CanonicalAddress);
+
+            articleCategory.Edit(command.Name, picturePath, command.PictureTitle, command.PictureAlt,
+                command.Description, command.ShowOrder, command.Keywords, command.MetaDescription, slug
+                , command.CanonicalAddress);
+
 
             //_articleCategoryRepository.Create(articleCategory);
             _articleCategoryRepository.SaveChanges();

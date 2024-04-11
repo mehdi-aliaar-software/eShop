@@ -1,7 +1,9 @@
 ﻿@page "{id}"
 @model ServiceHost.Pages.ProductModel
 @{
-    ViewData["Title"] = "صفحه محصول";
+    ViewData["Title"] = Model.Product.Name;
+    ViewData["keywords"] = Model.Product.Keywords;
+    ViewData["metaDescription"] = Model.Product.MetaDescription;
 }
 <!--====================  breadcrumb area ====================-->
 <div class="breadcrumb-area section-space--half">

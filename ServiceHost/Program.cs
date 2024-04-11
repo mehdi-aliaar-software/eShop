@@ -1,3 +1,5 @@
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using _0_Framework.Application;
 using BM.Infrastructure.Configuration;
 using DM.Configuration;
@@ -22,6 +24,10 @@ InventoryManagementBootstrapper.Configure(builder.Services, inventoryConn);
 string blogConn = builder.Configuration.GetConnectionString("BlogDb");
 BlogManagementrBootstrapper.Configure(builder.Services, blogConn);
 builder.Services.AddTransient<IFileUploader, FileUploader>();
+
+
+builder.Services.AddSingleton(
+    HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
 
 var app = builder.Build();
 

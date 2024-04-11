@@ -1,4 +1,5 @@
-﻿@{
+﻿@model _01_ShopQuery.MenuModel
+@{
 }
 <div class="header-area header-sticky">
     <div class="container">
@@ -23,24 +24,25 @@
                                 <li class="menu-item-has-children">
                                     <a href="blog-left-sidebar.html">محصولات</a>
                                     <ul class="sub-menu">
-                                        <li>
-                                            <a href="blog-left-sidebar.html">دکوری</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-right-sidebar.html">نگهدارنده</a>
-                                        </li>
+                                        @foreach (var item in Model.ProductCategories)
+                                        {
+                                            <li>
+                                                <a asp-page="/ProductCategory" asp-route-id="@item.Slug">@item.Name</a>
+                                            </li>
+                                        }
+
                                     </ul>
                                 </li>
 
                                 <li class="menu-item-has-children">
                                     <a href="blog-left-sidebar.html"> مقالات</a>
                                     <ul class="sub-menu">
-                                        <li>
-                                            <a href="blog-left-sidebar.html">گروه مقاله 1</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-right-sidebar.html">گروه مقاله 2</a>
-                                        </li>
+                                        @foreach (var item in Model.ArticleCategories)
+                                        {
+                                            <li>
+                                                <a asp-page="/ArticleCategory" asp-route-id="@item.Slug">@item.Name</a>
+                                            </li>
+                                        }
                                     </ul>
                                 </li>
 
@@ -218,9 +220,6 @@
 
                 <!--=======  End of mobile navigation area  =======-->
 
-
-
-
                 <div class="offcanvas-mobile-menu" id="offcanvas-mobile-menu">
                     <a href="javascript:void(0)" class="offcanvas-menu-close" id="offcanvas-menu-close-trigger">
                         <i class="ion-android-close"></i>
@@ -359,3 +358,8 @@
                     </div>
 
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+

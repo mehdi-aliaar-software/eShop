@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using _0_Framework.Application;
 using _0_Framework.Infrastructure;
 using BM.Application.Contracts.ArticleCategory;
+using Microsoft.EntityFrameworkCore;
 
 namespace BM.Infrastructure.EfCore.Repository
 {
@@ -50,14 +51,17 @@ namespace BM.Infrastructure.EfCore.Repository
 
         public List<ArticleCategoryViewModel> Search(ArticleCategorySearchModel searchModel)
         {
-            var query = _blogContext.ArticleCategories.Select(x => new ArticleCategoryViewModel
+            var query = _blogContext.ArticleCategories
+                .Include(x=>x.Articles)
+                .Select(x => new ArticleCategoryViewModel
             {
                 Id= x.Id,
                 Name = x.Name,
                 Description = x.Description,
                 Picture = x.Picture,
                 ShowOrder = x.ShowOrder,
-                CreatinDate = x.CreationDate.ToFarsi()
+                CreatinDate = x.CreationDate.ToFarsi(),
+                ArticlesCount = x.Articles.Count
             });
 
             if ( !string.IsNullOrWhiteSpace(searchModel.Name)  )

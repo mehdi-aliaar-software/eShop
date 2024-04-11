@@ -5,25 +5,26 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ServiceHost.Pages
 {
-    public class ArticleModel : PageModel
+    public class ArticleCategoryModel : PageModel
     {
-        public ArticleQueryModel Article;
-        public List<ArticleQueryModel> LatestArticles;
+        public ArticleCategoryQueryModel ArticleCategory;
         public List<ArticleCategoryQueryModel> ArticleCategories;
+        public List<ArticleQueryModel> LatestArticles;    //Last Articles.
 
-        private readonly IArticleQuery _articleQuery;
         private readonly IArticleCategoryQuery _articleCategoryQuery;
+        private readonly IArticleQuery _articleQuery;
 
-        public ArticleModel(IArticleQuery articleQuery, IArticleCategoryQuery articleCategoryQuery)
+        public ArticleCategoryModel(IArticleCategoryQuery articleCategoryQuery, IArticleQuery articleQuery)
         {
-            _articleQuery = articleQuery;
             _articleCategoryQuery = articleCategoryQuery;
+            _articleQuery = articleQuery;
         }
 
         public void OnGet(string id)
         {
-            Article = _articleQuery.GetArticleDetails(id); //id=slug
             LatestArticles = _articleQuery.LatestArticles();
+
+            ArticleCategory = _articleCategoryQuery.GetArticleCategoryBy(id);
             ArticleCategories = _articleCategoryQuery.GetArticleCategories();
         }
     }

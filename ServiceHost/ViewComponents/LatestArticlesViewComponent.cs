@@ -14,7 +14,7 @@ namespace ServiceHost.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var articles = _articleQuery.latestArticles();
+            var articles = _articleQuery.LatestArticles();
             return View(articles);
         }
     }

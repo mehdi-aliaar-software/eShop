@@ -64,14 +64,14 @@
 
                                         <div class="tag-area">
                                             <span>تگ ها: </span>
-                                            <ul>
+                                             <ul>
                                                 @foreach (var tag in Model.Article.KeywordList)
                                                 {
                                                     <li>
                                                         <a asp-page="/Search" asp-route-value="@tag">@tag</a>,
                                                     </li>
                                                 }
-                                            </ul>
+                                            </ul> 
                                         </div>
 
                                         <div class="social-share-buttons">
@@ -101,8 +101,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="comment-section">
-                                        <h3 class="comment-counter">نظرات (@Model.Article.Comments.Count)</h3>
+                                   @*  <div class="comment-section">
+                                        <h3 class="comment-counter">نظرات  (@Model.Article.Comments.Count) </h3>
                                         <div class="comment-container">
                                             @foreach (var comment in Model.Article.Comments)
                                             {
@@ -175,7 +175,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> *@
                                 </div>
                             </div>
                             <div class="col-lg-3 order-2 order-lg-2">
