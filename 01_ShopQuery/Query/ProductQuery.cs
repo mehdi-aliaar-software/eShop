@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Application;
+using _01_ShopQuery.Contracts.Comment;
 using _01_ShopQuery.Contracts.Product;
 using CM.Infrastructure.EfCore;
 using DM.Infrastructure.EfCore;
@@ -95,6 +96,7 @@ namespace _01_ShopQuery.Query
                     Id = x.Id,
                     Name = x.Name,
                     Message = x.Message,
+                    CreationDate = x.CreationDate.ToFarsi()
                 })
                 .OrderByDescending(x => x.Id)
                 .ToList();

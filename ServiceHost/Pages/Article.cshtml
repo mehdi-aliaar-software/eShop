@@ -64,14 +64,14 @@
 
                                         <div class="tag-area">
                                             <span>تگ ها: </span>
-                                             <ul>
+                                            <ul>
                                                 @foreach (var tag in Model.Article.KeywordList)
                                                 {
                                                     <li>
                                                         <a asp-page="/Search" asp-route-value="@tag">@tag</a>,
                                                     </li>
                                                 }
-                                            </ul> 
+                                            </ul>
                                         </div>
 
                                         <div class="social-share-buttons">
@@ -101,7 +101,7 @@
                                         </div>
                                     </div>
 
-                                   @*  <div class="comment-section">
+                                    <div class="comment-section">
                                         <h3 class="comment-counter">نظرات  (@Model.Article.Comments.Count) </h3>
                                         <div class="comment-container">
                                             @foreach (var comment in Model.Article.Comments)
@@ -122,7 +122,7 @@
                                                         @if (comment.ParentId > 0)
                                                         {
                                                             <p>
-                                                                <span>در پاسخ به: </span><a href="#comment-@comment.ParentId">@comment.parentName</a>
+                                                                <span>در پاسخ به: </span><a href="#comment-@comment.ParentId">@comment.ParentName</a>
                                                             </p>
                                                         }
                                                         <p class="comment-text">@comment.Message</p>
@@ -154,13 +154,13 @@
                                                         <div class="col-lg-4">
                                                             <div class="form-group">
                                                                 <label>ایمیل <span class="required">*</span></label>
-                                                                <input type="text" name="email" placeholder="مثال: contact@atriya.com">
+                                                                <input type="text" name="email" placeholder="مثال: contact@yourDomain.com">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="form-group">
                                                                 <label>وبسایت</label>
-                                                                <input type="text" name="website" placeholder="مثال: http://www.atriya.com">
+                                                                <input type="text" name="website" placeholder="مثال: http://www.yourDomain.com">
                                                             </div>
                                                         </div>
                                                         <input type="hidden" name="ownerRecordId" value="@Model.Article.Id" />
@@ -175,7 +175,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div> *@
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 order-2 order-lg-2">
