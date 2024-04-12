@@ -25,6 +25,9 @@ string blogConn = builder.Configuration.GetConnectionString("BlogDb");
 BlogManagementrBootstrapper.Configure(builder.Services, blogConn);
 builder.Services.AddTransient<IFileUploader, FileUploader>();
 
+string commentConn = builder.Configuration.GetConnectionString("CommentDb");
+CommentManagementBootstrapper.Configure(builder.Services, commentConn);
+
 
 builder.Services.AddSingleton(
     HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));

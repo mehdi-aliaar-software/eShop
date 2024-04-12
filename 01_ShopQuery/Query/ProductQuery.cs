@@ -1,11 +1,9 @@
 ﻿using _0_Framework.Application;
 using _01_ShopQuery.Contracts.Product;
-using _01_ShopQuery.Contracts.ProductCategory;
+using CM.Infrastructure.EfCore;
 using DM.Infrastructure.EfCore;
 using IM.Infrastructure.EfCore;
 using Microsoft.EntityFrameworkCore;
-using SM.Domain.CommentAgg;
-using SM.Domain.ProductAgg;
 using SM.Infrastructure.EfCore;
 
 namespace _01_ShopQuery.Query
@@ -15,16 +13,19 @@ namespace _01_ShopQuery.Query
         private readonly ShopContext _context;
         private readonly InventoryContext _inventoryContext;
         private readonly DiscountContext _discountContext;
+        private readonly CommentContext _commentCotext;
 
-        public ProductQuery(ShopContext context, InventoryContext inventoryContext, DiscountContext discountContext)
+        public ProductQuery(ShopContext context, InventoryContext inventoryContext, 
+            DiscountContext discountContext, CommentContext commentCotext)
         {
             _context = context;
             _inventoryContext = inventoryContext;
             _discountContext = discountContext;
+            _commentCotext = commentCotext;
         }
 
 
-        public ProductQueryModel Getdetails(string slug)
+        public ProductQueryModel GetProductDtails(string slug)
         {
             var _inventory = _inventoryContext.Inventory.Select(x => new { x.Id,x.ProductId, x.unitPrice, x.InStock }).ToList();
 
@@ -37,7 +38,6 @@ namespace _01_ShopQuery.Query
                 .Products
                 .Include(x => x.Category)
                 .Include(x=>x.ProductPictures)
-                .Include(x=>x.Comments)
                 .Select(x => new ProductQueryModel
                 {
                     Id = x.Id,
@@ -53,7 +53,6 @@ namespace _01_ShopQuery.Query
                     Description = x.Description,
                     Keywords = x.Keywords,
                     MetaDescription = x.MetaDescription,
-                    Comments = MapComment(x.Comments)
                     
                 }).FirstOrDefault(x => x.Slug == slug);
             if (product == null)
@@ -84,23 +83,26 @@ namespace _01_ShopQuery.Query
                         }
                     }
                 }
-
             }
-            
+
+            product.Comments = _commentCotext
+                .Comments
+                .Where(x => x.Type == CommentType.Product)
+                .Where(x=>x.OwnerRecordId==product.Id)
+                .Where(x => !x.IsCanceled && x.IsConfirmed)
+                .Select(x=>new CommentQueryModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Message = x.Message,
+                })
+                .OrderByDescending(x => x.Id)
+                .ToList();
+
             return product;
         }
 
-        private static List<CommentQueryModel> MapComment(List<Comment> comments)
-        {
-            var result=comments.Where(x=>!x.IsCanceled && x.IsConfirmed)
-                .Select(x=>new CommentQueryModel { 
-                    Id= x.Id,
-                    Name= x.Name,
-                    Message= x.Message,
-                }).OrderByDescending(x=>x.Id ).ToList();
 
-            return result;  
-        }
 
         public List<ProductQueryModel> GetLatestArrivals()
         {

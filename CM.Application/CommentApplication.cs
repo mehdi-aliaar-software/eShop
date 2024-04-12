@@ -1,14 +1,8 @@
-﻿using SM.Application.Contracts.Comment;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _0_Framework.Application;
-using SM.Domain.CommentAgg;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+﻿using _0_Framework.Application;
+using CM.Application.Contracts.Comment;
+using CM.Domain.CommentAgg;
 
-namespace SM.Application
+namespace CM.Application
 {
     public class CommentApplication: ICommentApplication
     {
@@ -23,7 +17,8 @@ namespace SM.Application
         {
             var operation=new OperationResult();
 
-            var comment = new Comment(command.Name, command.Email, command.Message, command.ProductId);
+            var comment = new Comment(command.Name, command.Email, command.Website, command.Message, 
+                command.OwnerRecordId, command.Type, command.ParentId);
             _commentRepository.Create(comment);
             _commentRepository.SaveChanges();
             return operation.Succeeded();

@@ -1,4 +1,4 @@
-﻿namespace SM.Application.Contracts.Comment;
+﻿namespace CM.Application.Contracts.Comment;
 
 public class CommentSearchModel
 {

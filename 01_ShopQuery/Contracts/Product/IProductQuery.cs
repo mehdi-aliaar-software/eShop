@@ -2,7 +2,7 @@
 {
     public interface IProductQuery
     {
-        ProductQueryModel Getdetails(string slug);
+        ProductQueryModel GetProductDtails(string slug);
         List<ProductQueryModel> GetLatestArrivals();
         List<ProductQueryModel> Search(string value);
     }

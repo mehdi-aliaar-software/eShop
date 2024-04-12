@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BM.Infrastructure.EfCore\BM.Infrastructure.EfCore.csproj" />
+    <ProjectReference Include="..\CM.Infrastructure.EfCore\CM.Infrastructure.EfCore.csproj" />
     <ProjectReference Include="..\DM.Infrastructure.EfCore\DM.Infrastructure.EfCore.csproj" />
     <ProjectReference Include="..\IM.Infrastructure.EfCore\IM.Infrastructure.EfCore.csproj" />
     <ProjectReference Include="..\SM.Infrastructure.EfCore\SM.Infrastructure.EfCore.csproj" />
