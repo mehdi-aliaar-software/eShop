@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\0_Framework\0_Framework.csproj" />
     <ProjectReference Include="..\AM.Applcation.Contracts\AM.Application.Contracts.csproj" />
+    <ProjectReference Include="..\AM.Infrastructure.EfCore\AM.Infrastructure.EfCore.csproj" />
   </ItemGroup>
 
 </Project>

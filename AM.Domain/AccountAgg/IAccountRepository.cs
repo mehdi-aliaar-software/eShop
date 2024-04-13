@@ -1,5 +1,5 @@
 ﻿using _0_Framework.Domain;
-using AM.Applcation.Contracts.Account;
+using AM.Application.Contracts.Account;
 
 namespace AM.Domain.AccountAgg
 {

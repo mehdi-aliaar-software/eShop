@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CM.Infrastructure.EfCore.Migrations
 {
     [DbContext(typeof(CommentContext))]
-    [Migration("20240412062804_WebsiteOptional")]
-    partial class WebsiteOptional
+    [Migration("20240413054059_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

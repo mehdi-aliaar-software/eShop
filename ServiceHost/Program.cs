@@ -1,6 +1,7 @@
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using _0_Framework.Application;
+using AM.Configuration;
 using BM.Infrastructure.Configuration;
 using DM.Configuration;
 using IM.Infrastructure.Configuration;
@@ -28,9 +29,13 @@ builder.Services.AddTransient<IFileUploader, FileUploader>();
 string commentConn = builder.Configuration.GetConnectionString("CommentDb");
 CommentManagementBootstrapper.Configure(builder.Services, commentConn);
 
+string accountConn = builder.Configuration.GetConnectionString("AccountDb");
+AccountManagementBootstrapper.Configure(builder.Services, accountConn);
 
 builder.Services.AddSingleton(
     HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
+builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
+builder.Services.AddSingleton<IFileUploader, FileUploader>();
 
 var app = builder.Build();
 

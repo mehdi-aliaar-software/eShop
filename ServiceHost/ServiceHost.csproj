@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AM.Configuration\AM.Configuration.csproj" />
     <ProjectReference Include="..\BM.Infrastructure.Configuration\BM.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\CM.Application.Contracts\CM.Application.Contracts.csproj" />
     <ProjectReference Include="..\CM.Configuration\CM.Configuration.csproj" />

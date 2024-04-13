@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using _0_Framework.Infrastructure;
-using AM.Applcation.Contracts.Account;
+using AM.Application.Contracts.Account;
 
 namespace AM.Infrastructure.EfCore.Repository
 {

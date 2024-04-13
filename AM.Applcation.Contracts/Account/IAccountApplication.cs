@@ -1,11 +1,6 @@
 ﻿using _0_Framework.Application;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AM.Applcation.Contracts.Account
+namespace AM.Application.Contracts.Account
 {
     public interface IAccountApplication
     {
@@ -16,3 +11,4 @@ namespace AM.Applcation.Contracts.Account
         List<AccountViewModel> Search(AccountSearchModel searchModel);
     }
 }
+

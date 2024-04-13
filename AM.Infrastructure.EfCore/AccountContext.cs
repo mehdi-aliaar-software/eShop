@@ -12,10 +12,12 @@ namespace AM.Infrastructure.EfCore
         {
         }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var assembly = typeof(AccountMapping).Assembly;
             modelBuilder.ApplyConfigurationsFromAssembly(assembly);
+
             base.OnModelCreating(modelBuilder);
         }
     }

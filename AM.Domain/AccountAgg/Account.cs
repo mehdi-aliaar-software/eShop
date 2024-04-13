@@ -16,23 +16,22 @@ namespace AM.Domain.AccountAgg
         public string Mobile { get; private set; }
         public string ProfilePhoto { get; private set; }
 
-        public Account(string fullName, string fullUsernameName, string password, long roleId, 
+        public Account(string fullName, string username, string password, long roleId, 
             string mobile, string profilePhoto)
         {
             FullName = fullName;
-            Username = fullUsernameName;
+            Username = username;
             Password = password;
             RoleId = roleId;
             Mobile = mobile;
             ProfilePhoto = profilePhoto;
         }
 
-        public void Edit(string fullName, string fullUsernameName, string password, long roleId,
+        public void Edit(string fullName, string username, long roleId,
             string mobile, string profilePhoto)
         {
             FullName = fullName;
-            Username = fullUsernameName;
-            Password = password;
+            Username = username;
             RoleId = roleId;
             Mobile = mobile;
 
