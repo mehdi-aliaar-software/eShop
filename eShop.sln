@@ -113,9 +113,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AM.Infrastructure", "AM.Inf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Infrastructure.EfCore", "AM.Infrastructure.EfCore\AM.Infrastructure.EfCore.csproj", "{59B3478E-EDFD-47C9-A5AA-66AF781234B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AM.Application", "AM.Application\AM.Application.csproj", "{4F04EE34-E35B-4876-8F26-4A955D9D18CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Application", "AM.Application\AM.Application.csproj", "{4F04EE34-E35B-4876-8F26-4A955D9D18CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AM.Configuration", "AM.Configuration\AM.Configuration.csproj", "{8B476A1A-DCC5-478D-B8FC-EEA3E95C2C37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Configuration", "AM.Configuration\AM.Configuration.csproj", "{8B476A1A-DCC5-478D-B8FC-EEA3E95C2C37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

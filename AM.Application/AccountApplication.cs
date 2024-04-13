@@ -29,7 +29,7 @@ namespace AM.Application
             }
 
             var password = _passwordHasher.Hash(command.Password);
-            string path = $"profilePictures";
+            string path = $"profilePhotos";
             string profilePath = _fileUploader.Upload(command.ProfilePhoto, path);
 
             Account account = new Account(command.FullName, command.Username, password, command.RoleId, 
@@ -52,7 +52,7 @@ namespace AM.Application
             {
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
             }
-            string path = $"profilePictures";
+            string path = $"profilePhotos";
             string profilePath = _fileUploader.Upload(command.ProfilePhoto, path);
 
             account.Edit(command.FullName,command.Username, command.RoleId,command.Mobile,
