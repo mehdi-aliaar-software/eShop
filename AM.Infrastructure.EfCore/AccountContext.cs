@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using AM.Domain.AccountAgg;
+using AM.Domain.RoleAgg;
 using AM.Infrastructure.EfCore.Mappings;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +9,7 @@ namespace AM.Infrastructure.EfCore
     public class AccountContext:DbContext
     {
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public AccountContext(DbContextOptions<AccountContext> options):base(options)
         {
         }

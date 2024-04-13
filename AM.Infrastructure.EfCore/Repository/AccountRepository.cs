@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using _0_Framework.Application;
 using _0_Framework.Infrastructure;
 using AM.Application.Contracts.Account;
+using Microsoft.EntityFrameworkCore;
 
 namespace AM.Infrastructure.EfCore.Repository
 {
@@ -38,14 +39,17 @@ namespace AM.Infrastructure.EfCore.Repository
 
         public List<AccountViewModel> Search(AccountSearchModel searchModel)
         {
-            var query = _context.Accounts.Select(x => new AccountViewModel
+            var query = _context
+                .Accounts
+                .Include(x=>x.Role)
+                .Select(x => new AccountViewModel
             {
                 Id = x.Id,
                 FullName = x.FullName,
                 Mobile = x.Mobile,
                 ProfilePhoto = x.ProfilePhoto,
-                Role = "مدیر سیستم",
-                RoleId = 2, //fttb
+                Role = x.Role.Name,
+                RoleId = x.RoleId,
                 Username = x.Username,
                 CreationDate = x.CreationDate.ToFarsi()
             });

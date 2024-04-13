@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AM.Domain.RoleAgg;
 
 namespace AM.Domain.AccountAgg
 {
@@ -13,6 +14,7 @@ namespace AM.Domain.AccountAgg
         public string Username { get; private set; }
         public string Password { get; private set; }
         public long RoleId { get; private set; }
+        public Role Role { get; private set; }
         public string Mobile { get; private set; }
         public string ProfilePhoto { get; private set; }
 
