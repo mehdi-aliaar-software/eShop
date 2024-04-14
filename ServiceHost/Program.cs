@@ -5,6 +5,7 @@ using AM.Configuration;
 using BM.Infrastructure.Configuration;
 using DM.Configuration;
 using IM.Infrastructure.Configuration;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using ServiceHost;
 using SM.Configuration;
 
@@ -36,6 +37,23 @@ builder.Services.AddSingleton(
     HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
 builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
 builder.Services.AddSingleton<IFileUploader, FileUploader>();
+builder.Services.AddSingleton<IAuthHelper, AuthHelper>();
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy=Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+
+});
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+        p =>
+        {
+            p.LoginPath = new PathString("/Account");
+            p.LogoutPath = new PathString("/Account");
+            p.AccessDeniedPath = new PathString("/AccessDenied");
+        });
 
 var app = builder.Build();
 
@@ -46,6 +64,9 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseAuthentication();
+app.UseCookiePolicy();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
