@@ -42,7 +42,7 @@ namespace ServiceHost.Areas.Administration.Pages.Accounts.Account
 
         public IActionResult OnGetCreate()
         {
-            var command = new CreateAccount
+            var command = new RegisterAccount
             {
                 //Roles = new SelectList(_roleApplication.Search(), "Id", "Name")
                 Roles = _roleApplication.Search()
@@ -51,9 +51,9 @@ namespace ServiceHost.Areas.Administration.Pages.Accounts.Account
         }
 
         //[NeedsPermission(ShopPermissions.CreateAccountCategory)]
-        public JsonResult OnPostCreate(CreateAccount command)
+        public JsonResult OnPostCreate(RegisterAccount command)
         {
-            var result = _accountApplication.Create(command);
+            var result = _accountApplication.Register(command);
             return new JsonResult(result);
         }
 

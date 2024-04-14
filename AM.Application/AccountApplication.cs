@@ -23,11 +23,32 @@ namespace AM.Application
             _authHelper = authHelper;
         }
 
-        public OperationResult Create(CreateAccount command)
+        public OperationResult Create(RegisterAccount command)
         {
             OperationResult operation = new OperationResult();
             if (_accountRepository.Exists(x => x.Username == command.Username ||
                                              x.Mobile == command.Mobile))
+            {
+                return operation.Failed(ApplicationMessages.DuplicatedRecord);
+            }
+
+            var password = _passwordHasher.Hash(command.Password);
+            string path = $"profilePhotos";
+            string profilePath = _fileUploader.Upload(command.ProfilePhoto, path);
+
+            Account account = new Account(command.FullName, command.Username, password, command.RoleId,
+                command.Mobile, profilePath);
+            _accountRepository.Create(account);
+            _accountRepository.SaveChanges();
+            return operation.Succeeded();
+        }
+
+        //the same as Create:
+        public OperationResult Register(RegisterAccount command)
+        {
+            OperationResult operation = new OperationResult();
+            if (_accountRepository.Exists(x => x.Username == command.Username ||
+                                               x.Mobile == command.Mobile))
             {
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
             }

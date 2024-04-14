@@ -24,7 +24,13 @@ namespace AM.Domain.AccountAgg
             FullName = fullName;
             Username = username;
             Password = password;
+
             RoleId = roleId;
+            if (roleId==0)
+            {
+                RoleId = 2; // system user
+            }
+           
             Mobile = mobile;
             ProfilePhoto = profilePhoto;
         }
