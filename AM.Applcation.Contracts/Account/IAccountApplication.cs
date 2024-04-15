@@ -7,7 +7,7 @@ namespace AM.Application.Contracts.Account
         OperationResult Register(RegisterAccount command);
         OperationResult Edit(EditAccount command);
         OperationResult ChangePassword(ChangePassword command);
-        OperationResult login(Login command);
+        OperationResult Login(Login command);
         EditAccount GetDetails(long id);
         List<AccountViewModel> Search(AccountSearchModel searchModel);
         void Logout();
