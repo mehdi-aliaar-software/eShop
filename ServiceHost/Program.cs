@@ -40,11 +40,11 @@ builder.Services.AddSingleton<IFileUploader, FileUploader>();
 builder.Services.AddSingleton<IAuthHelper, AuthHelper>();
 
 builder.Services.AddHttpContextAccessor();
+
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy=Microsoft.AspNetCore.Http.SameSiteMode.Strict;
-
 });
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,

@@ -107,9 +107,9 @@ namespace AM.Application
             return operation.Succeeded();
         }
 
-        public OperationResult login(Login command)
+        public OperationResult Login(Login command)
         {
-            OperationResult operation = new OperationResult();
+            var operation = new OperationResult();
             var account = _accountRepository.GetByUsername(command.Username);
             if (account == null)
             {
@@ -119,7 +119,7 @@ namespace AM.Application
             (bool Verified, bool NeedsUpgrade) result = _passwordHasher.Check(account.Password, command.Password);
             if (result.Verified == false)
             {
-                return operation.Failed(ApplicationMessages.MisMatchPassword);
+                return operation.Failed(ApplicationMessages.passwordOrUserMisMatch);
             }
 
             var authViewModel = new AuthViewModel
