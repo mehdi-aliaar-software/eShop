@@ -28,7 +28,7 @@ namespace AM.Domain.AccountAgg
             RoleId = roleId;
             if (roleId==0)
             {
-                RoleId = 2; // system user
+                RoleId = 1; // system user
             }
            
             Mobile = mobile;

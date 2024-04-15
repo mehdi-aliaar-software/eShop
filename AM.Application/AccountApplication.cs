@@ -123,7 +123,7 @@ namespace AM.Application
             }
 
             var authViewModel = new AuthViewModel
-                (account.Id, account.RoleId, account.Username, account.FullName, account.Mobile);
+                (account.Id, account.RoleId, account.Username, account.FullName);
 
             _authHelper.Signin(authViewModel);
             return operation.Succeeded();

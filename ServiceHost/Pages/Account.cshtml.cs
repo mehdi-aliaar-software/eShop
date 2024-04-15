@@ -11,6 +11,7 @@ namespace ServiceHost.Pages
 
         [TempData]
         public string RegisterMessage { get; set; }
+
         private readonly IAccountApplication _accountApplication;
 
         public AccountModel(IAccountApplication accountApplication)
@@ -34,11 +35,12 @@ namespace ServiceHost.Pages
             return RedirectToPage("/Account");
         }
 
-        public IActionResult OnPostLogout()
+        public IActionResult OnGetLogout()
         {
             _accountApplication.Logout();
             return RedirectToPage("/Index");
         }
+      
         public IActionResult OnPostRegister(RegisterAccount command)
         {
             var result = _accountApplication.Register(command);
