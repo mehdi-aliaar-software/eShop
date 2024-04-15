@@ -22,14 +22,6 @@
     </div>
 </div>
 
-
-@* @if (!string.IsNullOrWhiteSpace(Model.LoginMessage)) *@
-@* @if (Model.LoginMessage != null)
-{ *@
-
-<div class="alert alert-danger">@Model.LoginMessage</div>
-@* } *@
-
 <div class="page-content-area">
     <div class="container">
         <div class="row">
@@ -38,8 +30,13 @@
                     <div class="page-content-wrapper">
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6">
-                                
-  
+                                @* @if (Model.LoginMessage != null) *@
+
+                                @if (!string.IsNullOrWhiteSpace(Model.LoginMessage))
+                                {
+                                    <div class="alert alert-secondary">@Model.LoginMessage</div>
+                                }
+
                                 <form method="post" asp-page-handler="Login">
                                     <div class="login-form">
                                         <h4 class="login-title">ورود</h4>
@@ -96,7 +93,7 @@
                                             </div>
                                             <div class="col-md-12 mb-20">
                                                 <label>موبایل</label>
-                                                <input type="text" name="mobile" placeholder="موبایل">
+                                                <input type="number" name="mobile" placeholder="موبایل">
                                             </div>
                                             <div class="col-md-6 mb-20">
                                                 <label>رمز عبور</label>

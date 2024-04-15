@@ -7,9 +7,6 @@ namespace ServiceHost.Pages
     public class AccountModel : PageModel
     {
         [TempData]
-        public string dummy { get; set; }
-
-        //[TempData]
         public string LoginMessage { get; set; }
 
         [TempData]
@@ -19,7 +16,6 @@ namespace ServiceHost.Pages
         public AccountModel(IAccountApplication accountApplication)
         {
             _accountApplication = accountApplication;
-            LoginMessage = " dummy loginMessage";
         }
 
         public void OnGet()
@@ -28,8 +24,6 @@ namespace ServiceHost.Pages
 
         public IActionResult OnPostLogin(Login command)
         {
-            dummy = "welcome to new ambi";
-
             var result = _accountApplication.Login(command);
             if (result.IsSucceeded)
             {
@@ -47,7 +41,7 @@ namespace ServiceHost.Pages
         }
         public IActionResult OnPostRegister(RegisterAccount command)
         {
-            var result= _accountApplication.Register(command);
+            var result = _accountApplication.Register(command);
             if (result.IsSucceeded)
             {
                 return RedirectToPage("/Account");
