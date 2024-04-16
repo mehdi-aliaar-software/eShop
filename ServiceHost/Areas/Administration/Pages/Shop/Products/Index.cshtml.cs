@@ -1,9 +1,11 @@
+using _0_Framework.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SM.Application;
 using SM.Application.Contracts.Product;
 using SM.Application.Contracts.ProductCategory;
+using SM.Configuration.Permissions;
 
 //using ShopManagement.Application.Contracts.ProductCategory;
 //using ShopManagement.Configuration.Permissions;
@@ -29,7 +31,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Products
             _productCategoryApplication = productCategoryApplication;
         }
 
-        //[NeedsPermission(ShopPermissions.ListProductCategories)]
+        [NeedsPermission(ShopPermissions.ListProducts)]
         public void OnGet(ProductSearchModel searchModel)
         {
             ProductCategories = new SelectList (_productCategoryApplication.GetProductCategories(),  "Id","Name") ;
@@ -46,7 +48,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Products
             return Partial("./Create", command);
         }
 
-        //[NeedsPermission(ShopPermissions.CreateProductCategory)]
+        [NeedsPermission(ShopPermissions.CreateProduct)]
         public JsonResult OnPostCreate(CreateProduct command)
         {
             var result = _productApplication.Create(command);
@@ -60,7 +62,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Products
             return Partial("Edit", product);
         }
 
-        //[NeedsPermission(ShopPermissions.EditProductCategory)]
+        [NeedsPermission(ShopPermissions.EditProduct)]
         public JsonResult OnPostEdit(EditProduct command)
         {
             if (ModelState.IsValid)

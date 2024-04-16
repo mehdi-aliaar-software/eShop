@@ -39,6 +39,7 @@ namespace AM.Infrastructure.EfCore.Repository
                 MappedPermissions =  MapPermissions(x.Permissions)
             }).AsNoTracking().FirstOrDefault(x => x.Id == id);
 
+            result.Permissions = result.MappedPermissions.Select(x =>  x.Code).ToList();
             return result;
         }
 

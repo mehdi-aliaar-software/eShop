@@ -1,6 +1,7 @@
 ﻿using _0_Framework.Application;
 using AM.Application.Contracts.Account;
 using AM.Domain.AccountAgg;
+using AM.Domain.RoleAgg;
 using AM.Infrastructure.EfCore.Repository;
 
 namespace AM.Application
@@ -11,16 +12,18 @@ namespace AM.Application
         private readonly IAccountRepository _accountRepository;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IAuthHelper _authHelper;
+        private readonly IRoleRepository _roleRepository;
 
 
 
         public AccountApplication(IAccountRepository accountRepository, IPasswordHasher passwordHasher,
-            IFileUploader fileUploader, IAuthHelper authHelper)
+            IFileUploader fileUploader, IAuthHelper authHelper, IRoleRepository roleRepository)
         {
             _accountRepository = accountRepository;
             _passwordHasher = passwordHasher;
             _fileUploader = fileUploader;
             _authHelper = authHelper;
+            _roleRepository = roleRepository;
         }
 
         public OperationResult Create(RegisterAccount command)
@@ -122,8 +125,13 @@ namespace AM.Application
                 return operation.Failed(ApplicationMessages.passwordOrUserMisMatch);
             }
 
+            var permissions = _roleRepository
+                .GetBy(account.RoleId)
+                .Permissions.Select(x=>x.Code)
+                .ToList();
+
             var authViewModel = new AuthViewModel
-                (account.Id, account.RoleId, account.Username, account.FullName);
+                (account.Id, account.RoleId, account.Username, account.FullName, permissions);
 
             _authHelper.Signin(authViewModel);
             return operation.Succeeded();
