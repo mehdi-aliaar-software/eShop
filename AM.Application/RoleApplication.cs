@@ -21,7 +21,7 @@ namespace AM.Application
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
             }
 
-            var role = new Role(command.Name);
+            var role = new Role(command.Name, new List<Permission>());
             _roleRepository.Create(role);
             _roleRepository.SaveChanges();
             return operation.Succeeded();
@@ -41,7 +41,7 @@ namespace AM.Application
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
             }
 
-            role.Edit(command.Name);
+            role.Edit(command.Name, new List<Permission>());
             _roleRepository.SaveChanges();
             return operation.Succeeded();
         }

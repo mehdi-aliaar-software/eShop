@@ -17,10 +17,12 @@ namespace AM.Infrastructure.EfCore.Mappings
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasMaxLength(100).IsRequired();
 
-
-            //builder.HasMany(x => x.Accounts)
-            //    .WithOne(x => x.Role)
-            //    .HasForeignKey(x => x.RoleId);
+            builder.OwnsMany(x => x.Permissions, NavigationBuilder =>
+            {
+                NavigationBuilder.HasKey(x => x.Id);
+                NavigationBuilder.ToTable("RolePermissions");
+                NavigationBuilder.WithOwner(x => x.Role);
+            });
         }
     }
 }

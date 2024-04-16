@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using ServiceHost;
 using SM.Configuration;
 
+//=== ver 03-01-28 a/p/n
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
