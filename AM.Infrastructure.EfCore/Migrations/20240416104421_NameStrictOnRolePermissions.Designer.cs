@@ -4,6 +4,7 @@ using AM.Infrastructure.EfCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AM.Infrastructure.EfCore.Migrations
 {
     [DbContext(typeof(AccountContext))]
-    partial class AccountContextModelSnapshot : ModelSnapshot
+    [Migration("20240416104421_NameStrictOnRolePermissions")]
+    partial class NameStrictOnRolePermissions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,6 +114,10 @@ namespace AM.Infrastructure.EfCore.Migrations
 
                             b1.Property<int>("Code")
                                 .HasColumnType("int");
+
+                            b1.Property<string>("Name")
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)");
 
                             b1.Property<long>("RoleId")
                                 .HasColumnType("bigint");

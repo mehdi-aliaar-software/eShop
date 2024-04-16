@@ -21,6 +21,8 @@ namespace AM.Infrastructure.EfCore.Mappings
             {
                 NavigationBuilder.HasKey(x => x.Id);
                 NavigationBuilder.ToTable("RolePermissions");
+                //NavigationBuilder.Property(x => x.Name).IsRequired(false).HasMaxLength(100);
+                NavigationBuilder.Ignore(x => x.Name);
                 NavigationBuilder.WithOwner(x => x.Role);
             });
         }

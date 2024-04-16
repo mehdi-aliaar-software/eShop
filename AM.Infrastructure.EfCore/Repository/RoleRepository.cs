@@ -11,17 +11,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AM.Infrastructure.EfCore.Repository
 {
-    public class RoleRepository:  RepositoryBase<long,Role>, IRoleRepository
+    public class RoleRepository : RepositoryBase<long, Role>, IRoleRepository
     {
         private readonly AccountContext _context;
-        public RoleRepository( AccountContext context) : base(context)
+        public RoleRepository(AccountContext context) : base(context)
         {
             _context = context;
         }
 
         public List<RoleViewModel> Search()
         {
-            var result=_context.Roles.Select(x=>new RoleViewModel
+            var result = _context.Roles.Select(x => new RoleViewModel
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -35,10 +35,18 @@ namespace AM.Infrastructure.EfCore.Repository
             var result = _context.Roles.Select(x => new EditRole
             {
                 Id = x.Id,
-                Name = x.Name
-                
-            }).FirstOrDefault(x => x.Id == id);
-               
+                Name = x.Name,
+                MappedPermissions =  MapPermissions(x.Permissions)
+            }).AsNoTracking().FirstOrDefault(x => x.Id == id);
+
+            return result;
+        }
+
+        private static List<PermissionDto> MapPermissions(IEnumerable<Permission> permissions)
+        {
+            var result = permissions
+                .Select(x => new PermissionDto(x.Code, x.Name))
+                .ToList();
             return result;
         }
     }
